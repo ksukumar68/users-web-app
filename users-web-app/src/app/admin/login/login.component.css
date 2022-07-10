@@ -1,0 +1,15 @@
+.main-divider:after,
+.main-divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.container-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.container-custom {
+height: 100%;
+}
+}

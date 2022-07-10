@@ -1,0 +1,70 @@
+<section class="vh-100">
+    <div class="container-fluid container-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="../../../assets/login-image.jpg"
+            class="img-fluid" alt="Login Image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form [formGroup]="loginForm" #form="ngForm">
+            <div class="main-divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0">Login</p>
+            </div>
+
+            <div class="form-outline mb-4">
+                <label for="email"  class="form-label">Email address</label>
+                <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                formControlName="email" 
+                placeholder="Enter ypur emai" 
+                required minlength="1" maxlength="100" 
+                class="form-control form-control-sm"
+                 [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                  <div *ngIf="email.errors?.['required']">
+                    This field is required.
+                  </div>
+                  <div *ngIf="email.errors?.['minlength']">
+                    This field must have at least 1 character.
+                  </div>
+                  <div *ngIf="email.errors?.['maxlength']">
+                    This field must have at most 100 characters.
+                  </div>
+                  <div *ngIf="!email.errors?.['required'] && !email.errors?.['minlength'] && !email.errors?.['maxlength'] && email.errors?.['emailValidator']">
+                    Invalid email format.
+                  </div>
+                </div>
+            </div>
+
+            <div class="form-outline mb-3">
+                <label class="form-label" for="form3Example4">Password</label>
+                <input 
+                id="password" 
+                name="password" 
+                formControlName="password" 
+                required minlength="10" 
+                class="form-control form-control-sm" 
+                [class.is-invalid]="password.invalid && (password.dirty || password.touched)">
+
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+                <div *ngIf="password.errors?.['required']">
+                    This field is required.
+                </div>
+                <div *ngIf="password.errors?.['minlength']">
+                    This field must have at least 10 characters.
+                </div>
+                </div>
+            </div>
+  
+            <div class="text-center mt-4 pt-2">
+              <button type="button" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
