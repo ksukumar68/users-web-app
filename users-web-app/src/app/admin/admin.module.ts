@@ -8,7 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShowUserComponent } from './show-user/show-user.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
-
+import { SharedModule } from '../shared/shared.module'
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
+    MatTableModule
   ]
 })
 export class AdminModule { }
