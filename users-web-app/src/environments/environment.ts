@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: "http://localhost:3300/api",
+  baseApiUrl: "http://localhost:3000/api",
   security: {
     allowedOrigins: 'https://localhost:4200/'
   }
