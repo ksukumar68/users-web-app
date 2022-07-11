@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Column } from '../../shared/interface/table-column'
+import { Column } from '../../shared/interface/table-column';
+import { AdminService } from '../../shared/services/admin.service';
 
 @Component({
   selector: 'app-show-user',
@@ -8,9 +9,12 @@ import { Column } from '../../shared/interface/table-column'
 })
 export class ShowUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminService:AdminService) { }
 
   ngOnInit(): void {
+    this.adminService.getAllUsersList().subscribe((response=>{
+      console.log(response)
+    }))
   }
 
   tableColumns: Array<Column> = [

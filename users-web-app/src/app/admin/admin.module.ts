@@ -10,6 +10,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { SharedModule } from '../shared/shared.module'
 import {MatTableModule} from '@angular/material/table';
+import { AdminService } from '../shared/services/admin.service'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,9 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     SharedModule,
     MatTableModule
-  ]
+  ],
+  providers: [
+    AdminService
+  ],
 })
 export class AdminModule { }

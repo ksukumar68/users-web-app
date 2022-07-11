@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UsersTableComponent } from './users-table/users-table.component'
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { AdminService } from '../shared/services/admin.service'
 
 @NgModule({
   declarations: [
@@ -15,6 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   exports: [
     UsersTableComponent
-  ]
+  ],
+  providers: [
+    AdminService
+  ],
 })
 export class SharedModule { }
