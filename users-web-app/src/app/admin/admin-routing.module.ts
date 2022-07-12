@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 import { LoginComponent } from './login/login.component';
 import { ShowUserComponent } from './show-user/show-user.component';
 
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: "create-user",
         component: CreateUserComponent,
+      },
+      {
+        path: "edit-user",
+        component: EditUserComponent,
       }
     ]
   },

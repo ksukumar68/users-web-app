@@ -1,4 +1,3 @@
-import { AppComponent } from "src/app/app.component";
 
 export interface Column {
     columnDef: string;
@@ -6,3 +5,5 @@ export interface Column {
     cell: Function;
     isButton?: boolean;
   }
+
+  

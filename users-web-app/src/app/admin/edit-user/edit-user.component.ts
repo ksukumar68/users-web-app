@@ -3,11 +3,11 @@ import { Column } from '../../shared/interface/table-column';
 import { AdminService } from '../../shared/services/admin.service';
 
 @Component({
-  selector: 'app-delete-user',
-  templateUrl: './delete-user.component.html',
-  styleUrls: ['./delete-user.component.css']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
-export class DeleteUserComponent implements OnInit {
+export class EditUserComponent implements OnInit {
 
   tableData: any ;
   constructor(private adminService:AdminService) { }
@@ -17,7 +17,7 @@ export class DeleteUserComponent implements OnInit {
       console.log(response)
       this.tableData =  response;
       this.tableData.forEach((data: { action: string})=>{
-        data.action = 'Delete';
+        data.action = 'Edit';
       })
       console.log(this.tableData)
     }))

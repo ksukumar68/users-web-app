@@ -7,13 +7,18 @@ import { AdminService } from '../../shared/services/admin.service';
   templateUrl: './show-user.component.html',
   styleUrls: ['./show-user.component.css']
 })
-export class ShowUserComponent implements OnInit {
-
+export class ShowUserComponent<T> implements OnInit {
+  tableData: any ;
   constructor(private adminService:AdminService) { }
 
   ngOnInit(): void {
     this.adminService.getAllUsersList().subscribe((response=>{
       console.log(response)
+      this.tableData =  response;
+      this.tableData.forEach((data: { action: string})=>{
+        data.action = 'View';
+      })
+      console.log(this.tableData)
     }))
   }
 
@@ -29,9 +34,9 @@ export class ShowUserComponent implements OnInit {
       cell: (element: Record<string, any>) => `${element['email']}`,
     },
     {
-      columnDef: 'DOB',
-      header: 'DOB',
-      cell: (element: Record<string, any>) => `${element['DOB']}`
+      columnDef: 'dob',
+      header: 'dob',
+      cell: (element: Record<string, any>) => `${element['dob']}`
     },
     {
       columnDef: 'action',
@@ -40,9 +45,6 @@ export class ShowUserComponent implements OnInit {
       isButton: true,
     }
   ];
-
-  tableData = [
-
-  ];
+  
 
 }

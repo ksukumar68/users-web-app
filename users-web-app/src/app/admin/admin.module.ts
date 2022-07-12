@@ -10,7 +10,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { SharedModule } from '../shared/shared.module'
 import {MatTableModule} from '@angular/material/table';
-import { AdminService } from '../shared/services/admin.service'
+import { AdminService } from '../shared/services/admin.service';
+import { EditUserComponent } from './edit-user/edit-user.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AdminService } from '../shared/services/admin.service'
     DashboardComponent,
     ShowUserComponent,
     CreateUserComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,

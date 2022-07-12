@@ -13,7 +13,9 @@
         </span>
   
         <ng-template #button>
-          <button (click)="submit(disCol.cell(element))">{{ disCol.cell(element) }}</button>
+          <button (click)="
+          openEditModal(editTemplate, element)
+        ">{{ disCol.cell(element) }}</button>
         </ng-template>
       </td>
     </ng-container>
@@ -22,4 +24,46 @@
   
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <ng-template #editTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title text-center">
+        {{userAction}} User
+      </h4>
+      <button type="button " class="close pull-right" aria-label="Close ">
+        <span aria-hidden="true ">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12 mainDiv">
+          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+              <div class="form-group col-md-12 pb-10 singleInputDiv">
+                <label for="email">Company Name<span class="asterick">*</span></label>
+                <input [disabled]="userAction =='View'" placeholder="Enter name" [(ngModel)]="userName" name="userName" #ngUserName="ngModel"
+                  class="form-control custom-form-control" />
+                
+              </div>
+              <div class="form-group col-md-12 pb-10 singleInputDiv">
+                <label for="email">Company Name<span class="asterick">*</span></label>
+                <input [disabled]="userAction =='View'" placeholder="Enter name" [(ngModel)]="userEmail" name="userEmail" #ngUserEmail="ngModel"
+                  class="form-control custom-form-control" />
+                
+              </div>
+              <div class="form-group col-md-12 pb-10 singleInputDiv">
+                <label for="email">Company Name<span class="asterick">*</span></label>
+                <input [disabled]="userAction =='View'" placeholder="Enter name" [(ngModel)]="userDOB" name="userDOB" #nguserDOB="ngModel"
+                  class="form-control custom-form-control" />
+                
+              </div>
+              <ng-container *ngIf="userAction !='View'">
+                <button type="submit" class="btn btn-primary addmantra-btn">Submit</button>
+              </ng-container>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-template>
   
