@@ -15,11 +15,12 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.getAllUsersList().subscribe((response=>{
       console.log(response)
-      this.tableData =  response;
+      if(response.status){
+        this.tableData =  response.data;
       this.tableData.forEach((data: { action: string})=>{
         data.action = 'Edit';
       })
-      console.log(this.tableData)
+      }
     }))
   }
 

@@ -14,11 +14,12 @@ export class ShowUserComponent<T> implements OnInit {
   ngOnInit(): void {
     this.adminService.getAllUsersList().subscribe((response=>{
       console.log(response)
-      this.tableData =  response;
-      this.tableData.forEach((data: { action: string})=>{
-        data.action = 'View';
-      })
-      console.log(this.tableData)
+      if(response.status){
+        this.tableData =  response.data;
+        this.tableData.forEach((data: { action: string})=>{
+          data.action = 'View';
+        })
+      }
     }))
   }
 

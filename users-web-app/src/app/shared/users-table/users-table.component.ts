@@ -40,19 +40,33 @@ export class UsersTableComponent implements OnInit, OnChanges {
   onSubmit(data: NgForm){
     console.log(data.controls['userEmail'].value);
     var finalData: UserData = {
-      name: data.controls['userEmail'].value,
-      email: data.controls['userName'].value,
+      name: data.controls['userName'].value,
+      email: data.controls['userEmail'].value,
       dob: data.controls['userDOB'].value
     }
+    console.log(this.userAction)
     switch(this.userAction) {
       case "Edit":
         this.adminService.updateUser(this.editUserId, finalData).subscribe(response=>{
           console.log(response)
+          if(response.status){
+            response.data.action = "Edit";
+            this.tableData.filter((userData: UserData)=> userData._id != this.editUserId);
+            this.tableData.push(response.data)
+            this.dataSource = new MatTableDataSource(this.tableData);
+          }
         })
         break;
       case "Add":
         this.adminService.addUser(finalData).subscribe(response=>{
           console.log(response)
+          if(response.status){
+            response.data.action = "Add";
+            this.tableData.push(response.data)
+            this.dataSource = new MatTableDataSource(this.tableData);
+            console.log(response)
+            console.log(this.tableData)
+          }
         })
         break;    
 
@@ -96,7 +110,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
         this.userEmail = "";
         this.userDOB = "";
         this.editUserId = "";
-        this.userAction = "";
+        this.userAction = "Add";
         this.modalService.show(template);
         break;    
 
