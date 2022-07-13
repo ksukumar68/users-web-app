@@ -7,3 +7,6 @@ table {
 .singleInputDiv{
   margin-bottom: 2%;
 }
+.warning{
+  color: red;
+}

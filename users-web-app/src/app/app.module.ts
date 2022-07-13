@@ -8,7 +8,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ApiInterceptor } from './shared/interceptors/api.interceptor'
+import { ApiInterceptor } from './shared/interceptors/api.interceptor';
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ApiInterceptor } from './shared/interceptors/api.interceptor'
     MatTableModule,
     MatIconModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     {

@@ -3,16 +3,16 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard/users-list">Users List</a>
+                <a class="nav-link" [routerLinkActive]="['active']" routerLink="/dashboard/users-list">Users List</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard/create-user">Create User</a>
+                <a class="nav-link" [routerLinkActive]="['active']" routerLink="/dashboard/create-user">Create User</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard/delete-user">Delete User</a>
+                <a class="nav-link" [routerLinkActive]="['active']" routerLink="/dashboard/delete-user">Delete User</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard/edit-user">Edit User</a>
+                <a class="nav-link" [routerLinkActive]="['active']" routerLink="/dashboard/edit-user">Edit User</a>
               </li>
             </ul>
           </nav>

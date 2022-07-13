@@ -7,14 +7,14 @@
         {{ disCol.header }}
       </th>
   
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element;let dataIndex = index;">
         <span *ngIf="!disCol.isButton; else button">
           {{ disCol.cell(element) }}
         </span>
   
         <ng-template #button>
           <button (click)="
-          openEditModal(editTemplate, element)
+          openEditModal(editTemplate, element, dataIndex)
         ">{{ disCol.cell(element) }}</button>
         </ng-template>
       </td>
@@ -40,25 +40,60 @@
           <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="form-group">
               <div class="form-group col-md-12 pb-10 singleInputDiv">
-                <label for="email">Company Name<span class="asterick">*</span></label>
-                <input [disabled]="userAction =='View'" placeholder="Enter name" [(ngModel)]="userName" name="userName" #ngUserName="ngModel"
+                <label for="email">Name<span class="asterick">*</span></label>
+                <input 
+                  [disabled]="userAction =='View'"
+                  placeholder="Enter user name" 
+                  [(ngModel)]="userName" 
+                  name="userName" 
+                  #ngUserName="ngModel"
+                  required
+                  matInput
                   class="form-control custom-form-control" />
-                
+                  <p class="warning" *ngIf="!ngUserName.valid && ngUserName.touched">
+                    Please Enter user name
+                  </p>
               </div>
               <div class="form-group col-md-12 pb-10 singleInputDiv">
-                <label for="email">Company Name<span class="asterick">*</span></label>
-                <input [disabled]="userAction =='View'" placeholder="Enter name" [(ngModel)]="userEmail" name="userEmail" #ngUserEmail="ngModel"
+                <label for="email">Email<span class="asterick">*</span></label>
+                <input 
+                  [disabled]="userAction =='View'" 
+                  placeholder="Enter email" 
+                  [(ngModel)]="userEmail" 
+                  name="userEmail" 
+                  #ngUserEmail="ngModel"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+                  required
                   class="form-control custom-form-control" />
-                
+                  <div *ngIf="ngUserEmail.touched">
+                    <p class="warning" *ngIf="ngUserEmail.errors?.['required']">
+                      Please Enter user email
+                    </p>
+                    <p class="warning" *ngIf="ngUserEmail.errors?.['pattern']">
+                      This is not a valid Email!
+                    </p>
+                  </div>
               </div>
               <div class="form-group col-md-12 pb-10 singleInputDiv">
-                <label for="email">Company Name<span class="asterick">*</span></label>
-                <input [disabled]="userAction =='View'" placeholder="Enter name" [(ngModel)]="userDOB" name="userDOB" #nguserDOB="ngModel"
+                <label for="email">Date Of Birth<span class="asterick">*</span></label>
+                <input 
+                  [disabled]="userAction =='View'" 
+                  placeholder="Enter date of birth" 
+                  [(ngModel)]="userDOB" 
+                  name="userDOB" 
+                  #nguserDOB="ngModel"
+                  required
                   class="form-control custom-form-control" />
-                
+                  <p class="warning" *ngIf="!nguserDOB.valid && nguserDOB.touched">
+                    Please Enter user DOB
+                  </p>  
               </div>
               <ng-container *ngIf="userAction !='View'">
-                <button type="submit" class="btn btn-primary addmantra-btn">Submit</button>
+                <button 
+                type="submit" 
+                class="btn btn-primary addmantra-btn"
+                [disabled]="!f.valid"
+                >Submit</button>
               </ng-container>
             </div>
           </form>
