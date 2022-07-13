@@ -7,10 +7,12 @@ import { AdminService } from '../shared/services/admin.service';
 import { BsModalService } from "ngx-bootstrap/modal";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
-    UsersTableComponent
+    UsersTableComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,

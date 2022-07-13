@@ -28,6 +28,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
   userDOB: string = '';
   userAction: string = '';
   modalRef: any;
+  isloading: boolean = true;
   constructor(
     private modalService: BsModalService,
     private adminService:AdminService,
@@ -36,6 +37,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.displayedColumns = this.tableColumns.map((c) => c.columnDef);
     this.dataSource = new MatTableDataSource(this.tableData);
+    this.isloading = false;
   }
 
   onSubmit(data: NgForm){
@@ -46,7 +48,9 @@ export class UsersTableComponent implements OnInit, OnChanges {
     }
     switch(this.userAction) {
       case "Edit":
+        this.isloading = true;
         this.adminService.updateUser(this.editUserId, finalData).subscribe(response=>{
+          this.isloading = false;;
           if(response.status){
             response.data.action = "Edit";
             const index = this.tableData.findIndex((userData: UserData)=> userData._id == this.editUserId);
@@ -59,7 +63,9 @@ export class UsersTableComponent implements OnInit, OnChanges {
         })
         break;
       case "Add":
+        this.isloading = true;
         this.adminService.addUser(finalData).subscribe(response=>{
+          this.isloading = false;
           if(response.status){
             response.data.action = "Add";
             this.tableData.push(response.data)
@@ -82,12 +88,16 @@ export class UsersTableComponent implements OnInit, OnChanges {
    openEditModal(template: TemplateRef<any>, data: any, index: number){
     switch(data.action) {
       case "Delete":
+        this.isloading = true;
         this.userAction = data.action;
         this.adminService.deleteUser(data._id).subscribe(async response=>{
           if(response){
+            this.isloading = false;
             this.tableData.splice(index, 1)
             this.dataSource = new MatTableDataSource(this.tableData);
             this.openSnackBar("Successfully deleted");
+          } else{
+            this.openSnackBar("Something went wrong");
           }
         })
         break;
